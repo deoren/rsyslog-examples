@@ -97,14 +97,15 @@ cd /tmp
 git clone https://github.com/rsyslog/libestr
 cd libestr
 autoreconf -vfi
-sh autogen.sh CFLAGS="-g" --enable-debug
+./configure CFLAGS="-g" --enable-debug
 make
 sudo make install
 
 cd /tmp
 git clone https://github.com/rsyslog/liblogging
 cd liblogging
-sh autogen.sh CFLAGS="-g" --disable-man-pages
+autoreconf -vfi
+./configure CFLAGS="-g" --disable-man-pages
 make
 sudo make install
 
@@ -112,7 +113,7 @@ cd /tmp
 git clone https://github.com/rsyslog/liblognorm
 cd liblognorm
 autoreconf -vfi
-CFLAGS="-g" ./configure --disable-testbench --enable-valgrind --enable-tools --enable-debug --enable-regexp
+./configure CFLAGS="-g"  --disable-testbench --enable-valgrind --enable-tools --enable-debug --enable-regexp --prefix="/usr"
 make
 sudo make install
 
