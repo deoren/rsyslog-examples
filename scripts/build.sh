@@ -129,6 +129,7 @@ sudo make install
 cd /tmp
 git clone https://github.com/rsyslog/rsyslog
 cd rsyslog
+sh autogen.sh CFLAGS="-g"
 ./configure CFLAGS="-g" --disable-generate-man-pages --enable-liblogging-stdlog --enable-imfile --enable-imptcp --enable-impstats --enable-pmnormalize --enable-omuxsock --enable-mmjsonparse --enable-mail --enable-mmrm1stspace --enable-relp --enable-usertools --enable-imjournal --enable-valgrind
 make
 sudo make install
