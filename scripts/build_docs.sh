@@ -2,7 +2,7 @@
 
 # Small bash script to generate html & epub versions of documentation from the current branch. The
 # idea is to tag the generated files with the latest commit on the branch to allow me to easily
-# determine what version of the "master" or "test" branch I'm working from.
+# determine what version of the "master" or "test" branch docs I'm working with.
 
 # Pull details dynamically
 version=$(grep -E '^version' source/conf.py | awk '{print $NF}' | sed "s/'//g")
