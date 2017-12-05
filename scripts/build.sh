@@ -3,8 +3,77 @@
 # TODO: 
 #
 # - Add in lots of error handling, etc. Right now this is a copy/paste from the markdown doc.
-# - Add in package installation commands specific to distro
-# - Arrays of packages per distro ...
+
+# Used to determine whether yum or apt-get should be used to install packages
+MATCH_REDHAT='Red Hat'
+MATCH_UBUNTU='Ubuntu'
+MATCH_CENTOS='CentOS'
+
+apt_packages=(
+  autoconf
+  automake
+  bison
+  build-essential
+  flex
+  git-core
+  libdbi-dev
+  libgcrypt11-dev
+  libgcrypt20-dev
+  libglib2.0-dev
+  libgrok-dev
+  libgrok1
+  libhiredis-dev
+  libmongo-client-dev
+  libmysqlclient-dev
+  libnet-dev
+  libpcre3-dev
+  libpq-dev
+  librdkafka-dev
+  libtokyocabinet-dev
+  libtool
+  pkg-config
+  postgresql-client
+  python-docutils
+  uuid-dev
+  valgrind
+  zlib1g-dev
+)
+
+yum_packages=(
+
+  autoconf
+  automake
+  bison
+  flex
+  git-core
+  gnutls-devel
+  libgcrypt-devel
+  libtool
+  libuuid-devel
+  pcre-devel
+  pkgconfig
+  python-docutils
+  systemd-devel
+  valgrind
+  zlib-devel
+
+)
+
+# Mash the contents into a single string - not creating an array via ()
+RELEASE_INFO=$(cat /etc/*release)
+
+if [[ "${RELEASE_INFO}" =~ ${MATCH_UBUNTU} ]]; then
+    sudo apt-get -y install  "${apt_packages[@]}"
+fi
+
+
+# If CentOS or RedHat distro, looks for items specific to those distros
+if [[ "${RELEASE_INFO}" =~ ${MATCH_CENTOS} ]] || 
+    [[ "${RELEASE_INFO}" =~ ${MATCH_REDHAT} ]]
+then
+    yum install -y  "${yum_packages[@]}"
+fi
+
 
 # FIXME: This needs to be abstracted
 primary_test_conf_file="https://raw.githubusercontent.com/deoren/rsyslog-examples/master/github_issues/rsyslog-i2150-stock-Adiscon-repo.conf"
