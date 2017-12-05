@@ -105,3 +105,4 @@ Note: An alternate approach here is to checkout to clone the repos to a semi-per
 - https://github.com/systemd/systemd/blob/master/src/core/macros.systemd.in
 - https://askubuntu.com/questions/27677/cannot-find-install-sh-install-sh-or-shtool-in-ac-aux (help with building librelp)
 - https://git-scm.com/docs/git-clean
+- https://github.com/rsyslog/liblognorm/blob/master/doc/installation.rst
