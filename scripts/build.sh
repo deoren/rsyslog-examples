@@ -5,7 +5,11 @@
 # - Add in lots of error handling, etc. Right now this is a copy/paste from the markdown doc.
 # - Add in package installation commands specific to distro
 # - Arrays of packages per distro ...
- 
+
+# FIXME: This needs to be abstracted
+primary_test_conf_file="https://raw.githubusercontent.com/deoren/rsyslog-examples/master/github_issues/rsyslog-i2150-stock-Adiscon-repo.conf"
+
+systemctl stop rsyslog
 
 cd /tmp
 rm -rf libfastjson libestr liblogging liblognorm librelp rsyslog
@@ -65,3 +69,7 @@ sudo ldconfig
 
 # Should work equally well on Ubuntu 16.04 or CentOS 7
 systemctl --no-reload preset rsyslog
+systemctl daemon-reload
+systemctl start rsyslog
+
+wget ${primary_test_conf_file} -O /etc/rsyslog.conf
