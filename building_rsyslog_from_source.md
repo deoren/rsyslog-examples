@@ -30,6 +30,7 @@ Note: An alternate approach here is to checkout to clone the repos to a semi-per
 1. `git clone https://github.com/rsyslog/libfastjson`
 1. `cd libfastjson/`
 1. `sh autogen.sh CFLAGS="-g"`
+1. `./configure CFLAGS="-g"`
 1. `make`
 1. `sudo make install`
 
@@ -38,7 +39,8 @@ Note: An alternate approach here is to checkout to clone the repos to a semi-per
 1. `cd /tmp`
 1. `git clone https://github.com/rsyslog/libestr`
 1. `cd libestr/`
-1. `sh autogen.sh CFLAGS="-g" --enable-debug`
+1. `autoreconf -vfi`
+1. `./configure CFLAGS="-g" --enable-debug`
 1. `make`
 1. `sudo make install`
 
@@ -47,7 +49,8 @@ Note: An alternate approach here is to checkout to clone the repos to a semi-per
 1. `cd /tmp`
 1. `git clone https://github.com/rsyslog/liblogging`
 1. `cd liblogging`
-1. `sh autogen.sh CFLAGS="-g" --disable-man-pages`
+1. `autoreconf -vfi`
+1. `./configure CFLAGS="-g" --disable-man-pages`
 1. `make`
 1. `sudo make install`
 
@@ -56,12 +59,8 @@ Note: An alternate approach here is to checkout to clone the repos to a semi-per
 1. `cd /tmp`
 1. `git clone https://github.com/rsyslog/liblognorm`
 1. `cd liblognorm`
-1. `libtoolize --force`
-1. `aclocal`
-1. `autoheader`
-1. `automake --force-missing --add-missing`
-1. `autoconf`
-1. `CFLAGS="-g" LIBESTR_CFLAGS="-I/tmp/libestr/include" LIBESTR_LIBS="-L/usr/lib" JSON_C_CFLAGS="-I/tmp/libfastjson" JSON_C_LIBS="-L/usr/lib -lfastjson" ./configure --disable-testbench --enable-valgrind --enable-tools --enable-debug --enable-regexp`
+1. `autoreconf -vfi`
+1. `./configure CFLAGS="-g" --disable-testbench --enable-valgrind --enable-tools --enable-debug --enable-regexp`
 1. `make`
 1. `sudo make install`
 
@@ -70,11 +69,7 @@ Note: An alternate approach here is to checkout to clone the repos to a semi-per
 1. `cd /tmp`
 1. `git clone https://github.com/rsyslog/librelp`
 1. `cd librelp`
-1. `libtoolize --force`
-1. `aclocal`
-1. `autoheader`
-1. `automake --force-missing --add-missing`
-1. `autoconf`
+1. `autoreconf -vfi`
 1. `./configure CFLAGS="-g" --enable-debug`
 1. `make`
 1. `sudo make install`
@@ -84,7 +79,8 @@ Note: An alternate approach here is to checkout to clone the repos to a semi-per
 1. `cd /tmp`
 1. `git clone https://github.com/rsyslog/rsyslog`
 1. `cd rsyslog`
-1. `sh autogen.sh CFLAGS="-g" LIBLOGNORM_CFLAGS="-I/tmp/liblognorm/src" LIBLOGNORM_LIBS="-L/usr/lib -llognorm" LIBLOGGING_STDLOG_LIBS="-L/usr/lib -llogging-stdlog" LIBLOGGING_STDLOG_CFLAGS="-I/tmp/liblogging" LIBFASTJSON_CFLAGS="-I/tmp/libfastjson" LIBFASTJSON_LIBS="-L/usr/lib -lfastjson" LIBESTR_CFLAGS="-I/tmp/libestr/include" LIBESTR_LIBS="-L/usr/lib -lestr" RELP_LIBS="-L/usr/lib" RELP_CFLAGS="-I/tmp/librelp/include" --disable-generate-man-pages --enable-liblogging-stdlog --enable-imfile --enable-imptcp --enable-impstats --enable-pmnormalize --enable-omuxsock --enable-mmjsonparse --enable-mail --enable-mmrm1stspace --enable-relp --enable-usertools --enable-imjournal --enable-valgrind`
+1. `sh autogen.sh CFLAGS="-g"`
+1. `./configure CFLAGS="-g" --disable-generate-man-pages --enable-liblogging-stdlog --enable-imfile --enable-imptcp --enable-impstats --enable-pmnormalize --enable-omuxsock --enable-mmjsonparse --enable-mail --enable-mmrm1stspace --enable-relp --enable-usertools --enable-imjournal --enable-valgrind`
 1. `make`
 
 ## Install rsyslog
