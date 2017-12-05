@@ -102,3 +102,4 @@ Note: An alternate approach here is to checkout to clone the repos to a semi-per
 - https://askubuntu.com/questions/27677/cannot-find-install-sh-install-sh-or-shtool-in-ac-aux (help with building librelp)
 - https://git-scm.com/docs/git-clean
 - https://github.com/rsyslog/liblognorm/blob/master/doc/installation.rst
+- https://github.com/rsyslog/libfastjson/blob/master/README.md
