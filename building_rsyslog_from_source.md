@@ -7,11 +7,11 @@ _Build rsyslog from source with maximum debug options enabled in order to aid in
 ### Ubuntu 16.04
 
 1. `sudo apt-get update`
-1. `sudo apt-get -y install libtool autoconf automake git-core build-essential pkg-config zlib1g-dev uuid-dev libgcrypt20-dev libhiredis-dev uuid-dev libgcrypt11-dev flex bison libdbi-dev libmysqlclient-dev postgresql-client libpq-dev libnet-dev librdkafka-dev libgrok-dev libgrok1 libgrok-dev libpcre3-dev libsystemd-dev libtokyocabinet-dev libglib2.0-dev libmongo-client-dev python-docutils valgrind`
+1. `sudo apt-get -y install autoconf automake bison build-essential flex git-core libdbi-dev libgcrypt11-dev libgcrypt20-dev libglib2.0-dev libgnutls-dev libgrok-dev libgrok1 libhiredis-dev libmongo-client-dev libmysqlclient-dev libnet1-dev libpcre3-dev libpq-dev librdkafka-dev libsystemd-dev  libtokyocabinet-dev libtool pkg-config postgresql-client python-docutils uuid-dev valgrind zlib1g-dev`
 
 ### CentOS 7
 
-1. `sudo yum install -y libtool autoconf automake valgrind git-core flex bison python-docutils pkgconfig zlib-devel libuuid-devel systemd-devel libgcrypt-devel gnutls-devel pcre-devel`
+1. `sudo yum install -y autoconf automake bison flex git-core gnutls-devel libgcrypt-devel libtool libuuid-devel pcre-devel pkgconfig python-docutils systemd-devel valgrind zlib-devel`
 
 Note: This list is incomplete and will need to be fleshed out further.
 
