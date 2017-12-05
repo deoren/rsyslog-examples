@@ -7,7 +7,7 @@ _Build rsyslog from source with maximum debug options enabled in order to aid in
 ### Ubuntu 16.04
 
 1. `sudo apt-get update`
-1. `sudo apt-get -y install libtool autoconf automake git-core build-essential pkg-config zlib1g-dev uuid-dev libgcrypt20-dev libhiredis-dev uuid-dev libgcrypt11-dev flex bison libdbi-dev libmysqlclient-dev postgresql-client libpq-dev libnet-dev librdkafka-dev libgrok-dev libgrok1 libgrok-dev libpcre3-dev libtokyocabinet-dev libglib2.0-dev libmongo-client-dev python-docutils valgrind`
+1. `sudo apt-get -y install libtool autoconf automake git-core build-essential pkg-config zlib1g-dev uuid-dev libgcrypt20-dev libhiredis-dev uuid-dev libgcrypt11-dev flex bison libdbi-dev libmysqlclient-dev postgresql-client libpq-dev libnet-dev librdkafka-dev libgrok-dev libgrok1 libgrok-dev libpcre3-dev libsystemd-dev libtokyocabinet-dev libglib2.0-dev libmongo-client-dev python-docutils valgrind`
 
 ### CentOS 7
 
@@ -84,7 +84,7 @@ Note: An alternate approach here is to checkout to clone the repos to a semi-per
 1. `cd /tmp`
 1. `git clone https://github.com/rsyslog/rsyslog`
 1. `cd rsyslog`
-1. `sh autogen.sh CFLAGS="-g" LIBLOGGING_STDLOG_LIBS="-L/usr/lib -llogging-stdlog" LIBLOGGING_STDLOG_CFLAGS="-I/tmp/liblogging" LIBFASTJSON_CFLAGS="-I/tmp/libfastjson" LIBFASTJSON_LIBS="-L/usr/lib -lfastjson" LIBESTR_CFLAGS="-I/tmp/libestr/include" LIBESTR_LIBS="-L/usr/lib -lestr" RELP_LIBS="-L/usr/lib" RELP_CFLAGS="-I/tmp/librelp/include"  --disable-generate-man-pages --enable-liblogging-stdlog --enable-imfile --enable-imptcp --enable-impstats --enable-pmnormalize --enable-omuxsock --enable-mmjsonparse --enable-mail --enable-mmrm1stspace --enable-relp --enable-usertools --enable-imjournal --enable-valgrind`
+1. `sh autogen.sh CFLAGS="-g" LIBLOGNORM_CFLAGS="-I/tmp/liblognorm/src" LIBLOGNORM_LIBS="-L/usr/lib -llognorm" LIBLOGGING_STDLOG_LIBS="-L/usr/lib -llogging-stdlog" LIBLOGGING_STDLOG_CFLAGS="-I/tmp/liblogging" LIBFASTJSON_CFLAGS="-I/tmp/libfastjson" LIBFASTJSON_LIBS="-L/usr/lib -lfastjson" LIBESTR_CFLAGS="-I/tmp/libestr/include" LIBESTR_LIBS="-L/usr/lib -lestr" RELP_LIBS="-L/usr/lib" RELP_CFLAGS="-I/tmp/librelp/include" --disable-generate-man-pages --enable-liblogging-stdlog --enable-imfile --enable-imptcp --enable-impstats --enable-pmnormalize --enable-omuxsock --enable-mmjsonparse --enable-mail --enable-mmrm1stspace --enable-relp --enable-usertools --enable-imjournal --enable-valgrind`
 1. `make`
 
 ## Install rsyslog
