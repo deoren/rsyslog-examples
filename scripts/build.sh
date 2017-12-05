@@ -9,7 +9,8 @@
 # FIXME: This needs to be abstracted
 primary_test_conf_file="https://raw.githubusercontent.com/deoren/rsyslog-examples/master/github_issues/rsyslog-i2150-stock-Adiscon-repo.conf"
 
-systemctl stop rsyslog
+systemctl stop syslog.socket
+systemctl stop rsyslog.service
 
 cd /tmp
 rm -rf libfastjson libestr liblogging liblognorm librelp rsyslog
@@ -74,6 +75,7 @@ systemctl daemon-reload
 wget ${primary_test_conf_file} -O /etc/rsyslog.conf
 
 # Start rsyslog after all conf files have been dropped/modified/etc
-systemctl start rsyslog
+systemctl start syslog.socket
+systemctl start rsyslog.service
 
 systemctl status rsyslog -l
