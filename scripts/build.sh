@@ -29,6 +29,7 @@ apt_packages=(
   libpcre3-dev
   libpq-dev
   librdkafka-dev
+  libsystemd-dev
   libtokyocabinet-dev
   libtool
   pkg-config
