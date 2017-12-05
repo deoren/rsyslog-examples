@@ -20,6 +20,7 @@ apt_packages=(
   libgcrypt11-dev
   libgcrypt20-dev
   libglib2.0-dev
+  libgnutls-dev
   libgrok-dev
   libgrok1
   libhiredis-dev
