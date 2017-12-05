@@ -92,6 +92,7 @@ Note: An alternate approach here is to checkout to clone the repos to a semi-per
 1. `sudo make install`
 1. `sudo ldconfig`
 1. `systemctl --no-reload preset rsyslog`
+1. `systemctl daemon-reload`
 
 ## References
 
