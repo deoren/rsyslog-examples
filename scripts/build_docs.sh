@@ -5,7 +5,7 @@
 # determine what version of the "master" or "test" branch I'm working from.
 
 # Pull details dynamically
-version=$(grep -E '^version' source/conf.py | sed "s/'//g")
+version=$(grep -E '^version' source/conf.py | awk '{print $NF}' | sed "s/'//g")
 datestamp=$(date '+%Y%m%d')
 commit=$(git describe | awk -F'-' '{print $NF}')
 release="${version}.${datestamp}.${commit}"
