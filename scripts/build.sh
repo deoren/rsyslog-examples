@@ -70,6 +70,10 @@ sudo ldconfig
 # Should work equally well on Ubuntu 16.04 or CentOS 7
 systemctl --no-reload preset rsyslog
 systemctl daemon-reload
-systemctl start rsyslog
 
 wget ${primary_test_conf_file} -O /etc/rsyslog.conf
+
+# Start rsyslog after all conf files have been dropped/modified/etc
+systemctl start rsyslog
+
+systemctl status rsyslog -l
