@@ -57,3 +57,6 @@ sh autogen.sh CFLAGS="-g" LIBLOGGING_STDLOG_LIBS="-L/usr/lib -llogging-stdlog" L
 make
 sudo make install
 sudo ldconfig
+
+# Should work equally well on Ubuntu 16.04 or CentOS 7
+systemctl --no-reload preset rsyslog
