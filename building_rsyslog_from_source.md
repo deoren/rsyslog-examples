@@ -93,6 +93,8 @@ Note: An alternate approach here is to checkout to clone the repos to a semi-per
 1. `sudo ldconfig`
 1. `systemctl --no-reload preset rsyslog`
 1. `systemctl daemon-reload`
+1. `systemctl restart rsyslog`
+1. `systemctl status rsyslog`
 
 ## References
 
