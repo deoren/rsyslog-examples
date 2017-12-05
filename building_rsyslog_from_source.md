@@ -86,13 +86,19 @@ Note: An alternate approach here is to checkout to clone the repos to a semi-per
 1. `cd rsyslog`
 1. `sh autogen.sh CFLAGS="-g" LIBLOGGING_STDLOG_LIBS="-L/usr/lib -llogging-stdlog" LIBLOGGING_STDLOG_CFLAGS="-I/tmp/liblogging" LIBFASTJSON_CFLAGS="-I/tmp/libfastjson" LIBFASTJSON_LIBS="-L/usr/lib -lfastjson" LIBESTR_CFLAGS="-I/tmp/libestr/include" LIBESTR_LIBS="-L/usr/lib -lestr" RELP_LIBS="-L/usr/lib" RELP_CFLAGS="-I/tmp/librelp/include"  --disable-generate-man-pages --enable-liblogging-stdlog --enable-imfile --enable-imptcp --enable-impstats --enable-pmnormalize --enable-omuxsock --enable-mmjsonparse --enable-mail --enable-mmrm1stspace --enable-relp --enable-usertools --enable-imjournal --enable-valgrind`
 1. `make`
+
+## Install rsyslog
+
 1. `sudo make install`
 1. `sudo ldconfig`
+1. `systemctl --no-reload preset rsyslog`
 
 ## References
 
 - https://github.com/rsyslog/rsyslog/issues/1920
 - http://www.rsyslog.com/doc/build_from_repo.html
 - https://github.com/rsyslog/rsyslog/issues/1839#issuecomment-346955531 (reference to CFLAGS build option)
+- https://git.centos.org/blob/rpms!rsyslog.git/c7/SPECS!rsyslog.spec
+- https://github.com/systemd/systemd/blob/master/src/core/macros.systemd.in
 - https://askubuntu.com/questions/27677/cannot-find-install-sh-install-sh-or-shtool-in-ac-aux (help with building librelp)
 - https://git-scm.com/docs/git-clean
