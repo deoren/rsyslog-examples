@@ -71,7 +71,7 @@ fi
 if [[ "${RELEASE_INFO}" =~ ${MATCH_CENTOS} ]] || 
     [[ "${RELEASE_INFO}" =~ ${MATCH_REDHAT} ]]
 then
-    yum install -y  "${yum_packages[@]}"
+    sudo yum install -y  "${yum_packages[@]}"
 fi
 
 
@@ -82,7 +82,7 @@ systemctl stop syslog.socket
 systemctl stop rsyslog.service
 
 cd /tmp
-rm -rf libfastjson libestr liblogging liblognorm librelp rsyslog
+sudo rm -rf libfastjson libestr liblogging liblognorm librelp rsyslog
 
 cd /tmp
 git clone https://github.com/rsyslog/libfastjson
@@ -138,13 +138,13 @@ sudo make install
 sudo ldconfig
 
 # Should work equally well on Ubuntu 16.04 or CentOS 7
-systemctl --no-reload preset rsyslog
-systemctl daemon-reload
+sudo systemctl --no-reload preset rsyslog
+sudo systemctl daemon-reload
 
-wget ${primary_test_conf_file} -O /etc/rsyslog.conf
+sudo wget ${primary_test_conf_file} -O /etc/rsyslog.conf
 
 # Start rsyslog after all conf files have been dropped/modified/etc
-systemctl start syslog.socket
-systemctl start rsyslog.service
+sudo systemctl start syslog.socket
+sudo systemctl start rsyslog.service
 
-systemctl status rsyslog -l
+sudo systemctl status rsyslog -l
