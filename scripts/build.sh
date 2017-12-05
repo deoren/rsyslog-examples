@@ -95,7 +95,8 @@ sudo make install
 
 cd /tmp
 git clone https://github.com/rsyslog/libestr
-cd libestr/
+cd libestr
+autoreconf -vfi
 sh autogen.sh CFLAGS="-g" --enable-debug
 make
 sudo make install
@@ -110,23 +111,15 @@ sudo make install
 cd /tmp
 git clone https://github.com/rsyslog/liblognorm
 cd liblognorm
-libtoolize --force
-aclocal
-autoheader
-automake --force-missing --add-missing
-autoconf
-CFLAGS="-g" LIBESTR_CFLAGS="-I/tmp/libestr/include" LIBESTR_LIBS="-L/usr/lib" JSON_C_CFLAGS="-I/tmp/libfastjson" JSON_C_LIBS="-L/usr/lib -lfastjson" ./configure --disable-testbench --enable-valgrind --enable-tools --enable-debug --enable-regexp
+autoreconf -vfi
+CFLAGS="-g" ./configure --disable-testbench --enable-valgrind --enable-tools --enable-debug --enable-regexp
 make
 sudo make install
 
 cd /tmp
 git clone https://github.com/rsyslog/librelp
 cd librelp
-libtoolize --force
-aclocal
-autoheader
-automake --force-missing --add-missing
-autoconf
+autoreconf -vfi
 ./configure CFLAGS="-g" --enable-debug
 make
 sudo make install
