@@ -1,6 +1,11 @@
 #!/bin/bash
 
-# TODO: Add in lots of error handling, etc. Right now this is a copy/paste from the markdown doc.
+# TODO: 
+#
+# - Add in lots of error handling, etc. Right now this is a copy/paste from the markdown doc.
+# - Add in package installation commands specific to distro
+# - Arrays of packages per distro ...
+ 
 
 cd /tmp
 rm -rf libfastjson libestr liblogging liblognorm librelp rsyslog
