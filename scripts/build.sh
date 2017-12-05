@@ -25,7 +25,7 @@ apt_packages=(
   libhiredis-dev
   libmongo-client-dev
   libmysqlclient-dev
-  libnet-dev
+  libnet1-dev
   libpcre3-dev
   libpq-dev
   librdkafka-dev
