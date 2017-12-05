@@ -134,7 +134,7 @@ sudo make install
 cd /tmp
 git clone https://github.com/rsyslog/rsyslog
 cd rsyslog
-sh autogen.sh CFLAGS="-g" LIBLOGGING_STDLOG_LIBS="-L/usr/lib -llogging-stdlog" LIBLOGGING_STDLOG_CFLAGS="-I/tmp/liblogging" LIBFASTJSON_CFLAGS="-I/tmp/libfastjson" LIBFASTJSON_LIBS="-L/usr/lib -lfastjson" LIBESTR_CFLAGS="-I/tmp/libestr/include" LIBESTR_LIBS="-L/usr/lib -lestr" RELP_LIBS="-L/usr/lib" RELP_CFLAGS="-I/tmp/librelp/include" --disable-generate-man-pages --enable-liblogging-stdlog --enable-imfile --enable-imptcp --enable-impstats --enable-pmnormalize --enable-omuxsock --enable-mmjsonparse --enable-mail --enable-mmrm1stspace --enable-relp --enable-usertools --enable-imjournal --enable-valgrind
+sh autogen.sh CFLAGS="-g" LIBLOGNORM_CFLAGS="-I/tmp/liblognorm/src" LIBLOGNORM_LIBS="-L/usr/lib -llognorm" LIBLOGGING_STDLOG_LIBS="-L/usr/lib -llogging-stdlog" LIBLOGGING_STDLOG_CFLAGS="-I/tmp/liblogging" LIBFASTJSON_CFLAGS="-I/tmp/libfastjson" LIBFASTJSON_LIBS="-L/usr/lib -lfastjson" LIBESTR_CFLAGS="-I/tmp/libestr/include" LIBESTR_LIBS="-L/usr/lib -lestr" RELP_LIBS="-L/usr/lib" RELP_CFLAGS="-I/tmp/librelp/include" --disable-generate-man-pages --enable-liblogging-stdlog --enable-imfile --enable-imptcp --enable-impstats --enable-pmnormalize --enable-omuxsock --enable-mmjsonparse --enable-mail --enable-mmrm1stspace --enable-relp --enable-usertools --enable-imjournal --enable-valgrind
 make
 sudo make install
 sudo ldconfig
