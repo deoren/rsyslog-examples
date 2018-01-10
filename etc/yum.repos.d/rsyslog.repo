@@ -1,0 +1,17 @@
+# Purpose: Enable latest stable rsyslog packages from "upstream" Adiscon RPM repo
+
+# References
+#
+# http://www.rsyslog.com/rhelcentos-rpms/
+# http://www.rsyslog.com/downloads/download-other/
+# http://rpms.adiscon.com/v8-stable/
+
+[rsyslog_v8]
+name=Adiscon CentOS-$releasever - local packages for $basearch
+baseurl=http://rpms.adiscon.com/v8-stable/epel-$releasever/$basearch
+enabled=1
+gpgcheck=1
+gpgkey=http://rpms.adiscon.com/RPM-GPG-KEY-Adiscon
+
+# Does not work with RHEL/CentOS 5, but that is extinct so we should be good
+protect=1
