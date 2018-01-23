@@ -7,11 +7,11 @@ _Build rsyslog from source with maximum debug options enabled in order to aid in
 ### Ubuntu 16.04
 
 1. `sudo apt-get update`
-1. `sudo apt-get -y install autoconf automake bison build-essential flex git-core libdbi-dev libgcrypt11-dev libgcrypt20-dev libglib2.0-dev libgnutls-dev libgrok-dev libgrok1 libhiredis-dev libmongo-client-dev libmysqlclient-dev libnet1-dev libpcre3-dev libpq-dev librdkafka-dev libsystemd-dev  libtokyocabinet-dev libtool pkg-config postgresql-client python-docutils uuid-dev valgrind zlib1g-dev`
+1. `sudo apt-get -y install autoconf automake bison build-essential flex git-core libdbi-dev libgcrypt11-dev libgcrypt20-dev libcurl4-gnutls-dev libglib2.0-dev libgnutls-dev libgrok-dev libgrok1 libhiredis-dev libmongo-client-dev libmysqlclient-dev libnet1-dev libpcre3-dev libpq-dev librdkafka-dev libsystemd-dev  libtokyocabinet-dev libtool pkg-config postgresql-client python-docutils uuid-dev valgrind zlib1g-dev`
 
 ### CentOS 7
 
-1. `sudo yum install -y autoconf automake bison flex git-core gnutls-devel libgcrypt-devel libtool libuuid-devel pcre-devel pkgconfig python-docutils systemd-devel valgrind zlib-devel`
+1. `sudo yum install -y autoconf automake bison flex git-core gnutls-devel libcurl-devel libgcrypt-devel libtool libuuid-devel pcre-devel pkgconfig python-docutils systemd-devel valgrind zlib-devel`
 
 Note: This list is incomplete and will need to be fleshed out further.
 
@@ -103,3 +103,7 @@ Note: An alternate approach here is to checkout to clone the repos to a semi-per
 - https://git-scm.com/docs/git-clean
 - https://github.com/rsyslog/liblognorm/blob/master/doc/installation.rst
 - https://github.com/rsyslog/libfastjson/blob/master/README.md
+- https://github.com/rsyslog/rsyslog-docker/blob/master/dev_env/ubuntu/devel/setup-system.sh
+- https://github.com/rsyslog/rsyslog-docker/blob/master/dev_env/centos7dev/Dockerfile
+- https://github.com/rsyslog/rsyslog/blob/master/ChangeLog
+
