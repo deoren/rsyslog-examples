@@ -19,6 +19,7 @@ apt_packages=(
   libdbi-dev
   libgcrypt11-dev
   libgcrypt20-dev
+  libcurl4-gnutls-dev
   libglib2.0-dev
   libgnutls-dev
   libgrok-dev
@@ -48,6 +49,7 @@ yum_packages=(
   bison
   flex
   git-core
+  libcurl-devel
   gnutls-devel
   libgcrypt-devel
   libtool
