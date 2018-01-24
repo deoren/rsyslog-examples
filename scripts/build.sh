@@ -21,7 +21,7 @@ apt_packages=(
   libgcrypt20-dev
   libcurl4-gnutls-dev
   libglib2.0-dev
-  libgnutls-dev
+  libgnutls28-dev
   libgrok-dev
   libgrok1
   libhiredis-dev
