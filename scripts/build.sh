@@ -82,8 +82,8 @@ fi
 # FIXME: This needs to be abstracted
 primary_test_conf_file="https://raw.githubusercontent.com/deoren/rsyslog-examples/master/github_issues/rsyslog-i2150-stock-Adiscon-repo.conf"
 
-systemctl stop syslog.socket
-systemctl stop rsyslog.service
+sudo systemctl stop syslog.socket
+sudo systemctl stop rsyslog.service
 
 cd /tmp
 sudo rm -rf libfastjson libestr liblogging liblognorm librelp rsyslog
