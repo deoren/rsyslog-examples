@@ -67,7 +67,7 @@ yum_packages=(
 RELEASE_INFO=$(cat /etc/*release)
 
 if [[ "${RELEASE_INFO}" =~ ${MATCH_UBUNTU} ]]; then
-    sudo apt-get -y install  "${apt_packages[@]}"
+    sudo apt-get update; apt-get -y install  "${apt_packages[@]}"
 fi
 
 
