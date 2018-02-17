@@ -148,3 +148,11 @@ sudo systemctl start syslog.socket
 sudo systemctl start rsyslog.service
 
 sudo systemctl status rsyslog -l
+
+# Stop rsyslog once the first attempt has been made.
+# This is so I can relaunch it using the '-dn -f ${primary_test_conf_file}'
+sudo systemctl stop rsyslog.service
+
+echo "Run rsyslog in debug mode under valgrind like so:"
+echo "valgrind rsyslogd -dn -f ${primary_test_conf_file}"
+
