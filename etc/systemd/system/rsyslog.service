@@ -1,0 +1,135 @@
+
+############################################################################
+# Shadow system copy of unit file at /lib/systemd/system/rsyslog.service
+# with this file that lives at /etc/systemd/system/rsyslog.service.
+#
+# By shadowing the system file, we take full responsiblity for maintaining
+# required settings in this file whenever the upstream developers update
+# the system copy of the file with new functionality.
+#############################################################################
+
+
+# (1) Explicitly declare a dependency on 'syslog.socket' so that systemd
+#     creates the '/run/systemd/journal/syslog' log socket for rsyslog's
+#     imuxsock module to use for reading log messages. This drop-in is
+#     needed because some distros (and now the official CentOS 7 package)
+#     opt to use imjournal as the default input module. For consistency
+#     and performance/reliability reasons across our systems, I am opting
+#     to use imuxsock everywhere possible.
+#
+# (2) Override stock unit file startup options to create a PID file. Without
+#     this option logrotate conf files that rely on using the PID file fail.
+#
+# (3) Delay starting rsyslog until the network target has been started
+
+
+# Background for "wait at startup for network.target logic:
+#
+#
+# In systemd, three target units take the role of $network:
+#
+# * network.target
+# * network-online.target
+# * network-pre.target
+#
+# network.target has very little meaning during start-up. It only indicates
+# that the network management stack is up after it has been reached. Whether
+# any network interfaces are already configured when it is reached is undefined.
+# It's primary purpose is for ordering things properly at shutdown: since the
+# shutdown ordering of units in systemd is the reverse of the startup ordering,
+# any unit that is order After=network.target can be sure that it is stopped
+# before the network is shut down if the system is powered off. This allows
+# services to cleanly terminate connections before going down, instead of
+# abruptly losing connectivity for ongoing connections, leaving them in an
+# undefined state.
+#
+# Note that network.target is a passive unit: you cannot start it directly
+# and it is not pulled in by any services that want to make use of the
+# network. Instead, it is pulled in by the network management service itself.
+#
+# Services using the network should hence simply place an
+# After=network.target dependency in their unit files, and avoid any
+# Wants=network.target or even Requires=network.target.
+
+
+# References:
+#
+#  https://github.com/systemd/systemd/blob/master/units/syslog.socket
+#  https://www.freedesktop.org/wiki/Software/systemd/syslog/
+#  https://www.freedesktop.org/software/systemd/man/systemd.unit.html
+#  https://www.freedesktop.org/software/systemd/man/systemd.service.html
+#
+#  https://github.com/rsyslog/rsyslog/issues/2134
+#  https://github.com/rsyslog/rsyslog-pkg-rhel-centos/issues/42
+#  https://github.com/rsyslog/rsyslog/issues/214
+#  https://github.com/rsyslog/rsyslog-pkg-ubuntu/issues/74
+#  https://github.com/rsyslog/rsyslog/issues/1704
+#
+#  https://bugzilla.redhat.com/show_bug.cgi?id=1263853
+#  https://serverfault.com/questions/482730/systemd-dependencies-and-boot-order
+#  https://www.freedesktop.org/wiki/Software/systemd/NetworkTarget/
+
+
+
+[Unit]
+
+Description=System Logging Service
+
+# Upstream documentation
+Documentation=man:rsyslogd(8)
+Documentation=http://www.rsyslog.com/doc/
+
+# Pull in the socket unit
+Requires=syslog.socket
+
+# rsyslog doesn't seem to gracefully handle lack of functioning name
+# resolution when processing remote queues (specifically omrelp, but likely
+# other network-dependent output modules also). Here we ask systemd to only
+# start rsyslog once the network target has been reached.
+After=network.target
+
+[Service]
+
+# Upstream package choice:
+#ExecStart=/usr/sbin/rsyslogd -n -iNONE
+
+
+# Not exactly needed, but keeping it like this in case we opt
+# to move the ExecStart entries back out to a separate drop-in
+# later. If we do, the cut/paste approach will preserve the
+# intended behavior of overriding the upstream unit file behavior
+ExecStart=
+
+# Explicitly launch rsyslog WITHOUT the option to skip creating
+# the PID file. Our logrotate config files currently expect
+# to find the PID file. This is keeping with previous package
+# behavior AND for maintaining 1:1 compatibility with Ubuntu
+# 14.04 (which doesn't use systemd as an init system).
+ExecStart=/usr/sbin/rsyslogd -n
+
+StandardOutput=null
+Restart=on-failure
+
+# Grant additional time for rsyslog to cleanly halt
+#
+# Configures the time to wait for a daemon to stop. If a service is asked to
+# stop, but does not terminate in the specified time, it will be terminated
+# forcibly via SIGTERM, and after another timeout of equal duration with
+# SIGKILL (see KillMode= in systemd.kill(5)). Takes a unit-less value in
+# seconds, or a time span value such as "5min 20s". Pass "infinity" to
+# disable the timeout logic. Defaults to DefaultTimeoutStopSec= from
+# the manager configuration file (see systemd-system.conf(5)).
+#
+# root@ubuntu-1604-testbox:/etc/systemd# grep DefaultTimeout /etc/systemd/system.conf
+# #DefaultTimeoutStartSec=90s
+# #DefaultTimeoutStopSec=90s
+TimeoutStopSec=240
+
+[Install]
+
+# Allow rsyslog to be started at boot (used by 'systemctl enable rsyslog')
+WantedBy=multi-user.target
+
+# This ensures that the syslog.service symbolic link to the rsyslog unit file
+# is created when the rsyslog service is enabled.
+Alias=syslog.service
