@@ -154,5 +154,5 @@ sudo systemctl status rsyslog -l
 sudo systemctl stop rsyslog.service
 
 echo "Run rsyslog in debug mode under valgrind like so:"
-echo "valgrind rsyslogd -dn -f ${primary_test_conf_file}"
+echo "valgrind rsyslogd -dn -f $(basename ${primary_test_conf_file})"
 
